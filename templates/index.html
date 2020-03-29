@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+
+<title>実況ジェネレータ</title>
+
+<h1>倉敷康雄さんの実況ジェネレータ</h1>
+<br>
+倉敷康雄さんの実況を生成します。<br>
+
+<form action="/result#result" method="post">
+    <table class="table table-responsive">
+        <tr>
+            <td>スコアラー</td>
+            <td>
+                {%if settings %}
+                    <input type="text" name="scorer" id="scorer" size="25" value="{{ settings.scorer }}">
+                {% else %}
+                    <input type="text" name="scorer" id="scorer" size="25">
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>アシスト</td>
+            <td>
+                {% if settings %}
+                    <input type="text" name="assist" id="assist" size="25" value="{{ settings.assist }}">
+                {% else %}
+                    <input type="text" name="assist" id="assist" size="25">
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>チーム</td>
+            <td>
+                {% if settings %}
+                    <input type="text" name="team" id="team" size="25" value="{{ settings.team }}">
+                {% else %}
+                    <input type="text" name="team" id="team" size="25">
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-primary">実況を生成</button>
+</form>
+
+{% if result %}
+    <div id="result"></div>
+    <br>
+    {% for p in result.get_jikkyo_list() %}
+        {{ p }}<br>
+    {% endfor %}
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://jikkyo-generator.herokuapp.com/" data-text="{{ result.get_jikkyo_sentence() }} #実況ジェネレータ" data-size="large">実況をツイート</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{% endif %}
+
+
+
+{% endblock %}
