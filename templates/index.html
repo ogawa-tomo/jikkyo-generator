@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-<br>
+<meta name="twitter:card" content="summary" />
+<!--<meta name="twitter:site" content="@ユーザー名" /> /*②*/-->
+<!--<meta property="og:url" content="記事のURL" /> /*③*/-->
+<meta property="og:title" content="倉敷保雄さんの実況ジェネレータ" />
+<meta property="og:description" content="倉敷保雄さんの実況を生成します。" />
+<meta property="og:image" content="https://jikkyo-generator.herokuapp.com//static/job_sports_jikkyou.png" />
 
 <title>実況ジェネレータ</title>
 
-<h1>倉敷康雄さんの実況ジェネレータ</h1>
+<h1>倉敷保雄さんの実況ジェネレータ</h1>
 <br>
-倉敷康雄さんの実況を生成します。<br>
+倉敷保雄さんの実況を生成します。<br>
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://jikkyo-generator.herokuapp.com/" data-text="倉敷保雄さんの実況ジェネレータ #実況ジェネレータ" data-size="large">Tweet</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<img src="/static/job_sports_jikkyou.png" width="350">
 
 <form action="/result#result" method="post">
     <table class="table table-responsive">
@@ -14,9 +22,9 @@
             <td>スコアラー</td>
             <td>
                 {%if settings %}
-                    <input type="text" name="scorer" id="scorer" size="25" value="{{ settings.scorer }}">
+                    <input type="text" name="scorer" id="scorer" size="25" value="{{ settings.scorer }}" required>
                 {% else %}
-                    <input type="text" name="scorer" id="scorer" size="25">
+                    <input type="text" name="scorer" id="scorer" size="25" required>
                 {% endif %}
             </td>
         </tr>
@@ -24,9 +32,9 @@
             <td>アシスト</td>
             <td>
                 {% if settings %}
-                    <input type="text" name="assist" id="assist" size="25" value="{{ settings.assist }}">
+                    <input type="text" name="assist" id="assist" size="25" value="{{ settings.assist }}" required>
                 {% else %}
-                    <input type="text" name="assist" id="assist" size="25">
+                    <input type="text" name="assist" id="assist" size="25" required>
                 {% endif %}
             </td>
         </tr>
@@ -34,9 +42,9 @@
             <td>チーム</td>
             <td>
                 {% if settings %}
-                    <input type="text" name="team" id="team" size="25" value="{{ settings.team }}">
+                    <input type="text" name="team" id="team" size="25" value="{{ settings.team }}" required>
                 {% else %}
-                    <input type="text" name="team" id="team" size="25">
+                    <input type="text" name="team" id="team" size="25" required>
                 {% endif %}
             </td>
         </tr>
@@ -46,10 +54,13 @@
 
 {% if result %}
     <div id="result"></div>
-    <br>
-    {% for p in result.get_jikkyo_list() %}
-        {{ p }}<br>
-    {% endfor %}
+    <div class="jikkyo_box" style="width: 500px; font-family: serif;" >
+        <p><i>
+            {% for p in result.get_jikkyo_list() %}
+                {{ p }}<br>
+            {% endfor %}
+        </i></p>
+    </div>
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://jikkyo-generator.herokuapp.com/" data-text="{{ result.get_jikkyo_sentence() }} #実況ジェネレータ" data-size="large">実況をツイート</a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endif %}
