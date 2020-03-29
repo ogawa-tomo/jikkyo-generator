@@ -5,7 +5,7 @@
 <!--<meta property="og:url" content="記事のURL" /> /*③*/-->
 <meta property="og:title" content="倉敷保雄さんの実況ジェネレータ" />
 <meta property="og:description" content="倉敷保雄さんの実況を生成します。" />
-<meta property="og:image" content="https://jikkyo-generator.herokuapp.com//static/job_sports_jikkyou.png" />
+<meta property="og:image" content="https://jikkyo-generator.herokuapp.com/static/job_sports_jikkyou.png" />
 
 <title>実況ジェネレータ</title>
 
@@ -15,8 +15,7 @@
 <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://jikkyo-generator.herokuapp.com/" data-text="倉敷保雄さんの実況ジェネレータ #実況ジェネレータ" data-size="large">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <br><br>
-<img src="/static/job_sports_jikkyou.png" width="350">
-aaaaaa
+<img src="/static/job_sports_jikkyou.png" width="250">
 
 <form action="/result#result" method="post">
     <table class="table table-responsive">
@@ -24,9 +23,9 @@ aaaaaa
             <td>スコアラー</td>
             <td>
                 {%if settings %}
-                    <input type="text" name="scorer" id="scorer" size="25" value="{{ settings.scorer }}" required>
+                    <input type="text" name="scorer" id="scorer" size="20" value="{{ settings.scorer }}" required>
                 {% else %}
-                    <input type="text" name="scorer" id="scorer" size="25" required>
+                    <input type="text" name="scorer" id="scorer" size="20" required>
                 {% endif %}
             </td>
         </tr>
@@ -34,9 +33,9 @@ aaaaaa
             <td>アシスト</td>
             <td>
                 {% if settings %}
-                    <input type="text" name="assist" id="assist" size="25" value="{{ settings.assist }}" required>
+                    <input type="text" name="assist" id="assist" size="20" value="{{ settings.assist }}" required>
                 {% else %}
-                    <input type="text" name="assist" id="assist" size="25" required>
+                    <input type="text" name="assist" id="assist" size="20" required>
                 {% endif %}
             </td>
         </tr>
@@ -44,9 +43,9 @@ aaaaaa
             <td>チーム</td>
             <td>
                 {% if settings %}
-                    <input type="text" name="team" id="team" size="25" value="{{ settings.team }}" required>
+                    <input type="text" name="team" id="team" size="20" value="{{ settings.team }}" required>
                 {% else %}
-                    <input type="text" name="team" id="team" size="25" required>
+                    <input type="text" name="team" id="team" size="20" required>
                 {% endif %}
             </td>
         </tr>
@@ -66,6 +65,15 @@ aaaaaa
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-url="https://jikkyo-generator.herokuapp.com/" data-text="{{ result.get_jikkyo_sentence() }} #実況ジェネレータ" data-size="large">実況をツイート</a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 {% endif %}
+
+<br><br><br><br>
+<h3>ソースコード</h3>
+<a href="https://github.com/ogawa-tomo/jikkyo-generator" target="_blank">https://github.com/ogawa-tomo/jikkyo-generator</a>
+<br><br>
+<h3>作者</h3>
+Twitter: <a href="https://twitter.com/otomo6sm" target="_blank">@otomo6sm</a><br>
+ご意見・ご要望などお気軽にどうぞ。<br>
+・他の作品： <a href="https://search-isolated-villages-2.herokuapp.com/" target="_blank">秘境集落探索ツール</a>
 
 
 
