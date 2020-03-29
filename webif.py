@@ -8,9 +8,9 @@ title = "実況ジェネレータ"
 
 class Settings(object):
 
-    def __init__(self, scorer, assist, team):
+    def __init__(self, scorer, team):
         self.scorer = scorer
-        self.assist = assist
+        # self.assist = assist
         self.team = team
 
 
@@ -24,11 +24,11 @@ def post():
     if request.method == "POST":
 
         scorer = request.form["scorer"]
-        assist = request.form["assist"]
+        # assist = request.form["assist"]
         team = request.form["team"]
 
-        settings = Settings(scorer, assist, team)
-        result = make_jikkyo(assist, scorer, team)
+        settings = Settings(scorer, team)
+        result = make_jikkyo(scorer, team)
 
         return render_template("index.html", result=result, settings=settings)
 

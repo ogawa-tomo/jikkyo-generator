@@ -21,10 +21,8 @@ from Phrase.phrase import *
 #     return Team("バルセローナ", "チャビ", "イニエスタ", "メッシ", "リオネル・メッシ")
 
 
-def make_jikkyo(passer, scorer, team_name):
+def make_jikkyo(scorer, team_name):
     """
-
-    :param passer:
     :param scorer:
     :param team_name:
     :return:
@@ -42,7 +40,7 @@ def make_jikkyo(passer, scorer, team_name):
     # フレーズの定義
     start = NullPhrase("")  # 最初
 
-    setup1 = Phrase(passer + "。")
+    # setup1 = Phrase(passer + "。")
     # setup2 = Phrase(passer2 + "。")
     setup3 = Phrase(scorer + "。")
 
@@ -90,12 +88,11 @@ def make_jikkyo(passer, scorer, team_name):
     end = EndPhrase(END)
 
     # 次のフレーズの確率定義
-    start.set_next_phrases({setup1: 0.6,
-                           end_setup: 0.1,
+    start.set_next_phrases({end_setup: 0.7,
                            setup3: 0.3})
-    setup1.set_next_phrases({end_setup: 0.7,
-                             # setup2: 0.3,
-                             setup3: 0.3})
+    # setup1.set_next_phrases({end_setup: 0.7,
+    #                          # setup2: 0.3,
+    #                          setup3: 0.3})
     # setup2.set_next_phrases({end_setup: 0.7,
     #                          setup3: 0.3})
     setup3.set_next_phrases({center_attack: 0.4,
